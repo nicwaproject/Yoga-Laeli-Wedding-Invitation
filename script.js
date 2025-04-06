@@ -7,6 +7,43 @@ function getGuestName() {
 // Menampilkan nama tamu pada cover
 document.getElementById('guestName').innerText = getGuestName();
 
+   // Auto Scroll
+   let scrolling = false;
+   let scrollInterval;
+
+   const scrollBtn = document.getElementById("scrollToggle");
+
+   scrollBtn.addEventListener("click", () => {
+     scrolling = !scrolling;
+
+     if (scrolling) {
+       scrollInterval = setInterval(() => {
+         window.scrollBy(0, 1.4); // ke bawah 2px per interval
+         if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+           clearInterval(scrollInterval);
+           scrolling = false;
+         }
+       }, 10);
+       scrollBtn.innerHTML = '<i class="fas fa-pause"></i>';
+     } else {
+       clearInterval(scrollInterval);
+       scrollBtn.innerHTML = '<i class="fas fa-arrow-down"></i>';
+     }
+   });   
+
+   function startAutoScroll() {
+    if (!scrolling) {
+        scrolling = true;
+        scrollInterval = setInterval(() => {
+            window.scrollBy(0, 1.4);
+            if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+                clearInterval(scrollInterval);
+                scrolling = false;
+            }
+        }, 10);
+    }
+}
+// Open Invitation
 document.getElementById('openInvitation').addEventListener('click', () => {
     // Dapatkan elemen cover dan undangan
     let cover = document.getElementById('cover');
@@ -23,32 +60,11 @@ document.getElementById('openInvitation').addEventListener('click', () => {
         // Putar musik undangan
         const audio = document.getElementById('weddingMusic');
         audio.play();
+
+        // Mulai auto scroll
+        startAutoScroll();
     }, { once: true });
 });
-
-    // Auto Scroll
-    let scrolling = false;
-    let scrollInterval;
-
-    const scrollBtn = document.getElementById("scrollToggle");
-
-    scrollBtn.addEventListener("click", () => {
-      scrolling = !scrolling;
-
-      if (scrolling) {
-        scrollInterval = setInterval(() => {
-          window.scrollBy(0, 1.4); // ke bawah 2px per interval
-          if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-            clearInterval(scrollInterval);
-            scrolling = false;
-          }
-        }, 10);
-        scrollBtn.innerHTML = '<i class="fas fa-pause"></i>';
-      } else {
-        clearInterval(scrollInterval);
-        scrollBtn.innerHTML = '<i class="fas fa-arrow-down"></i>';
-      }
-    });   
 
   // Menangani tombol Play/Pause
   document.getElementById('playPauseButton').addEventListener('click', function() {
