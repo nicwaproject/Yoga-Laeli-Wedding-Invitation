@@ -62,7 +62,9 @@ document.getElementById('openInvitation').addEventListener('click', () => {
         audio.play();
 
         // Mulai auto scroll
-        startAutoScroll();
+        setTimeout(() => {
+            startAutoScroll();
+        }, 3000); // jeda 3 detik
     }, { once: true });
 });
 
