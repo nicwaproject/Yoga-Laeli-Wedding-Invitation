@@ -22,6 +22,27 @@ body {
     overflow-x: hidden;
 }
 
+/* Auto Scroll */
+.scroll-btn {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 70px;
+    right: 20px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
 /* NAVIGASI */
 nav {
     position: fixed;
@@ -216,6 +237,7 @@ nav {
 
 /* Undangan Sections */
 #invitation {
+    position: relative;
     display: none;
     text-align: center;
     max-width: 400px;
@@ -632,10 +654,10 @@ nav {
 /* SECTION 5 */
 #section5 {
     position: relative;
-    padding: 80px 20px;
+    padding: 180px 20px;
     text-align: center;
     color: white;
-    background-image: url('image6.jpeg'); /* Path to background image */
+    background-image: url('image7.jpeg'); /* Path to background image */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -940,4 +962,3 @@ footer {
   .social-icon:hover {
     color: var(--primary-color); /* Warna saat hover */
   }
-
