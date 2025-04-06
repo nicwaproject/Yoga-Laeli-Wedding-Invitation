@@ -26,6 +26,30 @@ document.getElementById('openInvitation').addEventListener('click', () => {
     }, { once: true });
 });
 
+    // Auto Scroll
+    let scrolling = false;
+    let scrollInterval;
+
+    const scrollBtn = document.getElementById("scrollToggle");
+
+    scrollBtn.addEventListener("click", () => {
+      scrolling = !scrolling;
+
+      if (scrolling) {
+        scrollInterval = setInterval(() => {
+          window.scrollBy(0, 1.4); // ke bawah 2px per interval
+          if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+            clearInterval(scrollInterval);
+            scrolling = false;
+          }
+        }, 10);
+        scrollBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      } else {
+        clearInterval(scrollInterval);
+        scrollBtn.innerHTML = '<i class="fas fa-arrow-down"></i>';
+      }
+    });   
+
   // Menangani tombol Play/Pause
   document.getElementById('playPauseButton').addEventListener('click', function() {
     const audio = document.getElementById('weddingMusic');
@@ -285,7 +309,3 @@ const elements = document.querySelectorAll('.fade-in, .fade-slide, .swipe-left, 
 elements.forEach(element => {
     observer.observe(element);
 });
-
-
-
-
